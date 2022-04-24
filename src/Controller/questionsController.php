@@ -25,7 +25,8 @@ class questionsController extends AbstractController
         $checkParameters = $questionsValidations->checkParameters($parameters);
 
         if(!$checkParameters['validate']){
-            $response->setStatusCode(
+            $response->setStatusCode(400);
+            $response->setData(
                 [
                     'status' => 'Failure',
                     'error' => $checkParameters['errors']
