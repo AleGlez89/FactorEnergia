@@ -24,14 +24,14 @@ class questionsController extends AbstractController
         $parameters = json_decode($request->getContent(), true);
         $checkParameters = $questionsValidations->checkParameters($parameters);
 
-        if(!$checkParameters['validate']){
-            $response->setStatusCode(400);
+        if(!$checkParameters['validate']){         
             $response->setData(
                 [
                     'status' => 'Failure',
                     'error' => $checkParameters['errors']
                 ]
             );
+           $response->setStatusCode(400);
         }
         else {
             $allQuestions = $questionsServices->getData(
